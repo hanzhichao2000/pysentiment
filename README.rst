@@ -8,6 +8,10 @@ dictionaries for general and financial sentiment analysis.
 
 See also http://www.wjh.harvard.edu/~inquirer/ and https://www3.nd.edu/~mcdonald/Word_Lists.html .
 
+Install
+```````
+::
+    easy_install pysentiment
 
 Usage
 `````
