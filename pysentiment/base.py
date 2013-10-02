@@ -7,11 +7,6 @@ import os
 from pysentiment.utils import Tokenizer
 
 
-if os.path.exists('/usr/local/pysentiment.static'):
-    # if data is installed
-    STATIC_PATH = '/usr/local/pysentiment.static'
-else:
-    pass
 STATIC_PATH = os.path.dirname(__file__)+'/static'
 
 
