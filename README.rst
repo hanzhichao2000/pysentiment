@@ -16,7 +16,9 @@ Usage
 
     >>> import pysentiment as ps
     >>> hiv4 = ps.HIV4()
-    >>> tokens = hiv4.tokenize(text)
+    >>> tokens = hiv4.tokenize(text)  # text can be tokenized by other ways
+                                      # however, dict in HIV4 is preprocessed
+                                      # by the default tokenizer in the library
     >>> score = hiv4.get_score(tokens)
 
 
