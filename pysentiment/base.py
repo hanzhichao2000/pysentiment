@@ -30,13 +30,13 @@ class BaseDict(object):
     
     .. math::
     
-        Polarity= \\frac{N_pos-N_neg}{N_pos+N_neg}
+        Polarity= \\frac{N_{pos}-N_{neg}}{N_{pos}+N_{neg}}
     
     The formula for ``Subjectivity`` is,
     
     .. math::
     
-        Subjectivity= \\frac{N_pos+N_neg}{N}
+        Subjectivity= \\frac{N_{pos}+N_{neg}}{N}
     
     :type tokenizer: obj    
     :param tokenizer: An object which provides interface of ``tokenize``. 
