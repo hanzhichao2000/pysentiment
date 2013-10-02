@@ -11,6 +11,7 @@ See also http://www.wjh.harvard.edu/~inquirer/ and https://www3.nd.edu/~mcdonald
 Install
 ```````
 ::
+
     easy_install pysentiment
 
 Usage
