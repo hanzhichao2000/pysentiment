@@ -31,7 +31,7 @@ To use the Harvard IV-4 dictionary, create an instance of the `HIV4` class
 ``HIV4`` is a subclass for ``pysentiment.base.BaseDict``. ``BaseDict`` can be inherited by implmenting ``init_dict`` to initialize ``_posset`` and ``_negset`` for the dictionary
 to calculate 'positive' or 'negative' scores for terms.
 
-Similarly, to use the Loughran and McDonald dictionry:
+Similarly, to use the Loughran and McDonald dictionary:
 ::
 
     >>> import pysentiment as ps
