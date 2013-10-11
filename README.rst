@@ -2,7 +2,7 @@ pysentiment
 ===========
 
 This is a library for sentiment analysis in dictionary framework. 
-Two dictionaris are provided in the library, namely, Harvard IV-4 and 
+Two dictionaries are provided in the library, namely, Harvard IV-4 and 
 Loughran and McDonald Financial Sentiment Dictionaries, which are sentiment
 dictionaries for general and financial sentiment analysis.
 
@@ -16,6 +16,7 @@ Install
 
 Usage
 `````
+To use the Harvard IV-4 dictionary, create an instance of the `HIV4` class
 
 ::
 
@@ -29,6 +30,14 @@ Usage
 
 ``HIV4`` is a subclass for ``pysentiment.base.BaseDict``. ``BaseDict`` can be inherited by implmenting ``init_dict`` to initialize ``_posset`` and ``_negset`` for the dictionary
 to calculate 'positive' or 'negative' scores for terms.
+
+Similarly, to use the Loughran and McDonald dictionry:
+::
+
+    >>> import pysentiment as ps
+    >>> lm = ps.LM()
+    >>> tokens = lm.tokenize(text)  
+    >>> score = lm.get_score(tokens)
 
 
 Contributions
