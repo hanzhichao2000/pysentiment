@@ -52,8 +52,9 @@ class Tokenizer(BaseTokenizer):
                  'Names.txt']
         stopset = set()
         for f in files:
-            fin = open('%s/%s'%(STATIC_PATH, f))
+            fin = open('%s/%s'%(STATIC_PATH, f), 'rb')
             for line in fin.readlines():
+                line = line.decode(encoding='latin-1')
                 match = re.search('(\w+)', line)
                 if match == None:
                     continue
