@@ -19,15 +19,11 @@ See also http://www.cs.sunysb.edu/~skiena/lydia/
 
 The formula for ``Polarity`` is,
 
-.. math::
-
-    Polarity= \\frac{N_{pos}-N_{neg}}{N_{pos}+N_{neg}}
+    Polarity= (Pos-Neg)/(Pos+Neg)
 
 The formula for ``Subjectivity`` is,
 
-.. math::
-
-    Subjectivity= \\frac{N_{pos}+N_{neg}}{N}
+    Subjectivity= (Pos+Neg)/count(*)
 
 
 Install
