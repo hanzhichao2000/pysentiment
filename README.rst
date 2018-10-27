@@ -8,11 +8,33 @@ dictionaries for general and financial sentiment analysis.
 
 See also http://www.wjh.harvard.edu/~inquirer/ and https://www3.nd.edu/~mcdonald/Word_Lists.html .
 
+Introduction
+============
+
+``Positive`` and ``Negative`` are word counts for the words in positive and negative sets.
+
+
+``Polarity`` and ``Subjectivity`` are calculated in the same way of Lydia system.
+See also http://www.cs.sunysb.edu/~skiena/lydia/
+
+The formula for ``Polarity`` is,
+
+.. math::
+
+    Polarity= \\frac{N_{pos}-N_{neg}}{N_{pos}+N_{neg}}
+
+The formula for ``Subjectivity`` is,
+
+.. math::
+
+    Subjectivity= \\frac{N_{pos}+N_{neg}}{N}
+
+
 Install
 ```````
 ::
 
-    easy_install pysentiment
+    pip install pysentiment
 
 Usage
 `````
