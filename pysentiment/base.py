@@ -1,9 +1,10 @@
-'''
+"""
 This module contains base classes for dictionaries.
-'''
+"""
 
 import abc
 import os
+import numpy as np
 from pysentiment.utils import Tokenizer
 
 
@@ -11,7 +12,7 @@ STATIC_PATH = os.path.dirname(__file__)+'/static'
 
 
 class BaseDict(object):
-    '''
+    """
     A base class for sentiment analysis. 
     For now, only 'positive' and 'negative' analysis is supported.
     
@@ -36,7 +37,7 @@ class BaseDict(object):
     :type tokenizer: obj    
     :param tokenizer: An object which provides interface of ``tokenize``. 
         If it is ``None``, a default tokenizer, which is defined in ``utils``, will be assigned.
-    '''
+    """
     
     __metaclass__ = abc.ABCMeta
 
@@ -59,24 +60,37 @@ class BaseDict(object):
         assert len(self._posset) > 0 and len(self._negset) > 0
         
     def tokenize(self, text):
-        '''
+        """
         :type text: str
         :returns: list
-        '''
+        """
+
         return self._tokenizer.tokenize(text)
-    
+
+    def tokenize_first(self, x):
+        """
+        :type x: str
+        :returns: str
+        """
+        tokens = self.tokenize(x)
+        if tokens:
+            return tokens[0]
+        else:
+            return None
+
     @abc.abstractmethod
     def init_dict(self):
         pass
     
     def _get_score(self, term):
-        '''Get score for a single term.
+        """Get score for a single term.
+
         - +1 for positive terms.
         - -1 for negative terms.
         - 0 for others. 
         
         :returns: int
-        '''
+        """
         if term in self._posset:
             return +1
         elif term in self._negset:
@@ -85,18 +99,18 @@ class BaseDict(object):
             return 0
         
     def get_score(self, terms):
-        '''Get score for a list of terms.
+        """Get score for a list of terms.
         
         :type terms: list
         :param terms: A list of terms to be analyzed.
         
         :returns: dict
-        '''
+        """
         assert isinstance(terms, list) or isinstance(terms, tuple)
-        score_li = [self._get_score(t) for t in terms]
+        score_li = np.asarray([self._get_score(t) for t in terms])
         
-        s_pos = sum([s for s in score_li if s > 0])
-        s_neg = sum([s for s in score_li if s < 0]) * -1
+        s_pos = np.sum(score_li[score_li > 0])
+        s_neg = -np.sum(score_li[score_li < 0])
         
         s_pol = (s_pos-s_neg) * 1.0 / ((s_pos+s_neg)+self.EPSILON)
         s_sub = (s_pos+s_neg) * 1.0 / (len(score_li)+self.EPSILON)
