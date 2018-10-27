@@ -1,17 +1,10 @@
-# -*- encoding: utf-8 -*-
-'''
-Created on Oct 2, 2013
-
-@author: andy
-'''
-
 import unittest
+import numpy as np
 from pysentiment.hiv4 import HIV4
 from pysentiment.lm import LM
 
 
 class TestDict(unittest.TestCase):
-
 
     def setUp(self):
         self.text = '''Lately, the Indonesian government has unleashed an array of policies that are keeping mining and oil executives awake at night across this vast and geologically rich archipelago. The unpopular new regulations, aimed at reforming the mining and oil industries, are promoted in the name of "national interest." Yet left uncorrected, they will inevitably lead to a dramatic decline of output in Indonesia's extractive industries, damaging foreign investment and economic growth.
@@ -51,17 +44,24 @@ Of course, identifying the solutions is easier than implementing them. If the na
 
 Even if the government succeeds in reforming local policies, convincing investors could still prove an uphill battle. Daniel Poller, an international mining consultant, observes "natural resource companies think in decades, not years. They have to be able to trust the Indonesian government will not willy-nilly, once again, change the laws to suit their own purposes. Winning back that trust is not as simple as flipping a switch." That means the road to a better Rome will be a long one. But it certainly beats the alternative, which is just more fiddling.'''
 
-
     def test_hiv4(self):
         hiv4 = HIV4()
         tokens = hiv4.tokenize(self.text)
-        hiv4.get_score(tokens)
-    
+        score = hiv4.get_score(tokens)
+        self.assertEqual(score['Positive'], 70)
+        self.assertEqual(score['Negative'], 72)
+        self.assertTrue(np.isclose(score['Polarity'], -0.014084506943066852))
+        self.assertTrue(np.isclose(score['Subjectivity'], 0.30406852183282973))
+
     def test_lm(self):
         lm = LM()
         tokens = lm.tokenize(self.text)
-        lm.get_score(tokens)
+        score= lm.get_score(tokens)
+        self.assertEqual(score['Positive'], 16)
+        self.assertEqual(score['Negative'], 36)
+        self.assertTrue(np.isclose(score['Polarity'], -0.3846153772189351))
+        self.assertTrue(np.isclose(score['Subjectivity'], 0.11134903616413483))
+
 
 if __name__ == "__main__":
-    #import sys;sys.argv = ['', 'Test.testName']
     unittest.main()
