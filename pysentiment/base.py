@@ -8,7 +8,7 @@ import numpy as np
 from pysentiment.utils import Tokenizer
 
 
-STATIC_PATH = os.path.dirname(__file__)+'/static'
+STATIC_PATH = os.path.join(os.path.dirname(__file__), 'static')
 
 
 class BaseDict(object):
